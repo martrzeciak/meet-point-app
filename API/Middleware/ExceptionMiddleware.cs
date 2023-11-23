@@ -1,5 +1,6 @@
 ﻿using API.Errors;
 using System.Net;
+using System.Net.Mime;
 using System.Text.Json;
 
 namespace API.Middleware
@@ -26,7 +27,7 @@ namespace API.Middleware
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                context.Response.ContentType = "application/json";
+                context.Response.ContentType = MediaTypeNames.Application.Json;
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 var response = _hostEnvironment.IsDevelopment()
