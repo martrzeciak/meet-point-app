@@ -47,6 +47,5 @@ export class MemberEditComponent {
         this.editForm?.reset(this.member)
       }    
     });
-
   }
 }
