@@ -41,7 +41,7 @@ export class MemberEditComponent {
   }
 
   updateMember() {
-    this.memberService.updateMembeer(this.editForm?.value).subscribe({
+    this.memberService.updateMember(this.editForm?.value).subscribe({
       next: _ => {
         this.toastr.success('Profile updated successfully');
         this.editForm?.reset(this.member)
