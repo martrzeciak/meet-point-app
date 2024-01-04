@@ -47,6 +47,33 @@
         <button (click)="resetFiliters()" class="btn btn-info ms-1" type="submit">
             Reset Fliters
         </button>
+
+        <div class="col">
+            <div class="btn-group float-end">
+                <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    name="orderBy"
+                    [(ngModel)]="userParams.orderBy"
+                    btnRadio="lastActive"
+                    (click)="loadMembers()"
+                >
+                    Last Active
+                </button>
+
+                <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    name="orderBy"
+                    [(ngModel)]="userParams.orderBy"
+                    btnRadio="created"
+                    (click)="loadMembers()"
+                >
+                    Newset Members
+                </button>
+            </div>
+        </div>
+
     </form>
 </div>
 

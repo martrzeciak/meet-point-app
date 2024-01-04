@@ -1,4 +1,4 @@
-﻿using API.Extensions;
+﻿using API.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
