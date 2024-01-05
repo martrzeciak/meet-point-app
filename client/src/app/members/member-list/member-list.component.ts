@@ -19,7 +19,7 @@ export class MemberListComponent {
   genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}]
 
   constructor(private membersServices:MembersService) { 
-    this.membersServices.getUserParams();
+    this.userParams = this.membersServices.getUserParams();
   }
 
   ngOnInit(): void {
@@ -28,6 +28,7 @@ export class MemberListComponent {
   }
 
   loadMembers() {
+    console.log(this.userParams);
     if (this.userParams) {
       this.membersServices.setUserParams(this.userParams);
       this.membersServices.getMembers(this.userParams).subscribe({

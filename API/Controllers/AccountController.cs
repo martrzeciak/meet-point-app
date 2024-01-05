@@ -26,13 +26,13 @@ namespace API.Controllers
         [HttpPost("register")] // POST: api/account/register
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExist(registerDto.Username)) return BadRequest("Username is taken");
+            if (await UserExist(registerDto.UserName)) return BadRequest("Username is taken");
 
             var user = _mapper.Map<User>(registerDto);
 
             using var hmac = new HMACSHA512();
 
-            user.UserName = registerDto.Username.ToLower();
+            user.UserName = registerDto.UserName.ToLower();
             user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
             user.PasswordSalt = hmac.Key;
     
@@ -42,7 +42,7 @@ namespace API.Controllers
 
             return new UserDto
             {
-                Username = user.UserName,
+                UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
                 KnownAs = user.KnownAs,
                 Gender = user.Gender
@@ -54,7 +54,7 @@ namespace API.Controllers
         {
             var user = await _context.Users
                 .Include(p => p.Photos)
-                .SingleOrDefaultAsync(u => u.UserName == loginDto.Username);
+                .SingleOrDefaultAsync(u => u.UserName == loginDto.UserName);
 
             if (user == null) return Unauthorized("Invalid username");
 
@@ -69,7 +69,7 @@ namespace API.Controllers
 
             return new UserDto
             {
-                Username = user.UserName,
+                UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 KnownAs = user.KnownAs,

@@ -10,7 +10,7 @@ namespace API.Entities
         public bool IsMain { get; set; }
         public string PublicId { get; set; }
 
-        public int PropUserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }
