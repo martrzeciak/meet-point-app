@@ -34,7 +34,7 @@ export class UserManagmentComponent {
     const config = {
       class: 'modal-dialog-centered',
       initialState: {
-        username: user.username,
+        username: user.userName,
         avaliableRoles: this.avaliableRoles,
         selectedRoles: [...user.roles]
       }
@@ -54,7 +54,7 @@ export class UserManagmentComponent {
       next: () => {
         const selectedRoles = this.bsModalRef.content?.selectedRoles;
         if (!this.arrayEqual(selectedRoles!, user.roles)) {
-          this.adminService.updateUserRoles(user.username, selectedRoles!).subscribe({
+          this.adminService.updateUserRoles(user.userName, selectedRoles!).subscribe({
             next: roles => user.roles = roles
           })
         }

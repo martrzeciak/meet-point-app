@@ -1,4 +1,4 @@
-import { Component, Host, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
@@ -25,7 +25,9 @@ export class MemberEditComponent {
   constructor(private accountService: AccountService, private memberService: MembersService, 
     private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe({
-      next: user => this.user = user,
+      next: user => {
+        this.user = user;
+      }
    })
   }
 
@@ -35,8 +37,12 @@ export class MemberEditComponent {
 
   loadMember() {
     if (!this.user) return;
-    this.memberService.getMember(this.user.username).subscribe({
-      next: member => this.member = member,
+    console.log('user' + this.user.userName)
+    this.memberService.getMember(this.user.userName).subscribe({
+      next: member => {
+        this.member = member;
+        //console.log(this.member)
+      }
     })
   }
 

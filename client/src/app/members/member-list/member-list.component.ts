@@ -28,7 +28,6 @@ export class MemberListComponent {
   }
 
   loadMembers() {
-    console.log(this.userParams);
     if (this.userParams) {
       this.membersServices.setUserParams(this.userParams);
       this.membersServices.getMembers(this.userParams).subscribe({
